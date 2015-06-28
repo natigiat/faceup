@@ -128,7 +128,6 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
         date      :   tim 
       },onComplete);
 
-
      };
 
 

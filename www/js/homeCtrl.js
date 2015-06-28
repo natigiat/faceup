@@ -3,8 +3,10 @@
 //---------------------------------------------account controller-----------------------------//
 newl.controller("homeController" , function($scope, $state, $firebaseAuth, $firebaseObject , $timeout,$ionicLoading){
 
- 
 
+  $ionicLoading.hide();
+
+  $scope.today = moment().lang("he").format('dddd');
 
   //----------------ionic loader --------------------------------
   $scope.show = function() {
