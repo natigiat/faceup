@@ -1,9 +1,16 @@
 <ion-view class="" view-title="שעון" dir="rtl" >
       <div class="bar bar-subheader item-divider">
-  <h2 class="title"><clock format="HH:mm:ss"></clock> {{today}}</h2>
+  <h2 class="title"><clock format="HH:mm:ss"></clock>
+  </h2>
 </div>
-      <ion-content class="splash padding">
-				
+      <ion-content class="splash padding has-subheader">
+			
+			
+  			<i class="icon ion-ios-people-outline"></i>
+    		{{com}}	
+    		<i class="icon ion-ios-person-outline"></i>
+    		{{user}}
+			
 			<div ng-app="angular-flipclock " >
 			  
 			      <flip-clock></flip-clock>

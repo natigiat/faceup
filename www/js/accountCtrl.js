@@ -66,7 +66,7 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
                                           $scope.show($ionicLoading);
                                           $scope.error = '';
                                           console.log(dataUser.email + "מחובר");
-                                          $state.go("tabs.home");
+                                          $state.go('tabs.home/:com/:name',{com:company_name,name:name});
                                       }else {
                                           $scope.error = 'הסיסמא שלך אינה נכונה';
                                       }
@@ -117,7 +117,7 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
         if (error) {
           console.log('Synchronization failed');
         } else {
-          $state.go("tabs.home");
+          
         }
       };
 
@@ -127,6 +127,9 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
         email     : email ,
         date      :   tim 
       },onComplete);
+
+
+       
 
      };
 

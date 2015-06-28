@@ -68,7 +68,7 @@ newl.directive('flipClock', function($parse) {
 
         //generate clock object
         //clock = new FlipClock(element, options);
-        clock = element.FlipClock(getTime);
+        clock = element.FlipClock(options);
 
         //bind methods to the scope
         methods.forEach(function(method) {

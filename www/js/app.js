@@ -94,8 +94,8 @@ newl.config(function ($stateProvider , $urlRouterProvider) {
 
 
 
-    .state('tabs.home' , { 
-      url: '/home',
+    .state('tabs.home/:com/:name' , { 
+      url: '/home/:com/:name',
       views: {
         'home-tab' : {  
           templateUrl: 'templates/home.html',
