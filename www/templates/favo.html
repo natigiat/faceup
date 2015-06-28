@@ -1,0 +1,62 @@
+<ion-view view-title="מועדפים" dir="rtl">
+
+      <ion-nav-buttons side="primary">
+        <button class="button button-icon ion-minus-circled" ng-click="data.showDelete = !data.showDelete; data.showReorder = falase"></button>
+      </ion-nav-buttons>
+
+      <ion-nav-buttons side="secondary">
+          <button class="button button-icon ion-navicon" ng-click="data.showReorder = !data.showReorder; data.showDelete = false"></button>
+      </ion-nav-buttons> 
+       
+
+        <div class="bar bar-subheader item-input-inset bar-light">
+
+                  <label class="item-input-wrapper">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="search" ng-model="query" placeholder="Search">
+                  </label>
+   
+          </label>
+        </div>
+
+        <ion-content class="has-subheader">
+        <ion-refresher
+            pulling-text="Pull to refresh..."
+            on-refresh="doRefresh()">
+         </ion-refresher>
+
+
+          <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+              <ion-item ng-class="{'star' : artist.star}" ng-repeat="artist in artists | filter: query" class="item-thumbnail-right item-icon-left item-text-wrap" href="#/tab/list/{{artist.tel}}">
+                  
+                  <img src="img/{{artist.shortname}}_tn.jpg" alt="">
+                  <h2> {{artist.name}}</h2><span class="badge badge-assertive">{{artist.volume}}</span>
+                  <h4>  {{artist.adress}}</h4>
+                  <p> {{artist.description | limitTo:40}}
+                  {{artist.description.length > 40 ? '&hellip;' : '' }}</p>
+                 
+
+                
+
+                  
+                  <!-- toggle star -->
+                  <button class="button button-clear icon ion-star button-assertive" ng-click="toggleStar(artist)" ng-show="artist.star"></button>
+
+                  <ion-option-button class="button-dark" ng-click="toggleStar(artist)">
+                  <i class="icon ion-star"></i>
+                  </ion-option-button>
+
+                  <!-- delete buttons -->
+                  <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(artist)"></ion-delete-button>
+                  
+                  <!-- reorder buttons -->
+                  <ion-reorder-button class="ion-navicon" on-reorder="moveItem(artist, $fromIndex, $toIndex)"></ion-reorder-button>
+
+                   
+
+              </ion-item>
+          </ion-list>
+
+        </ion-content>
+  </ion-view>
+   

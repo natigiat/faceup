@@ -1,0 +1,65 @@
+<ion-header-bar blass="bar-defualt">
+	<h2 class="title">More Info</h2>
+</ion-header-bar>
+
+<ion-view>
+      <ion-content>
+      	<ion-list class="list-inset" dir="rtl">
+			<ion-item class="item-text-wrap" 
+			  ng-repeat="artist in artists | filter: {tel: whichartist}">
+			 
+              
+
+
+            <div class="list card">
+
+	          <div class="item item-avatar">
+	            <img src="img/{{artist.shortname}}_tn.jpg" alt="">
+	            <h2>{{artist.details.name}}  - {{artist.details.volume}} שנים בתחום </h2>
+	            <p>{{artist.details.company}} - {{artist.details.work}}</p>
+	            <p class="assertive">{{artist.details.adress}}</p>
+	          </div>
+
+
+
+
+	          <div class="item item-body">
+	            <img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
+	            <p> {{artist.details.description}}</p>
+	           
+	          </div>
+
+	          <div class="item tabs tabs-secondary tabs-icon-left">
+	             
+	            <!-- <a class="tab-item" href="#">
+	              <i class="icon ion-thumbsup"></i>
+	              Like
+	            </a>
+	            <a class="tab-item" href="#">
+	              <i class="icon ion-chatbox"></i>
+	              תגובות
+	            </a>
+	            <a class="tab-item" href="#">
+	              <i class="icon ion-share"></i>
+	              שתף
+	            </a> -->
+	          </div>
+	          
+
+
+
+
+
+	        </div>
+	        <a  href="tel:{{artist.tel}}" class=""><button class="button button-block button-assertive">לבעל העסק</button></a>
+                
+	
+			</ion-item>
+		
+      	</ion-list>
+
+
+
+           
+      </ion-content>
+</ion-view>

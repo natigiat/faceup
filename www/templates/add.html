@@ -1,0 +1,188 @@
+<ion-view  hide-nav-bar="true" dir="rtl" >
+    
+<ion-content class="splash padding">
+	<ion-list class="list list-inset">
+
+	 <form name="signinForm" novalidate="" ng-submit="signIn(signinForm)">
+	    <label class="item item-input"  
+		   ng-class="{ 'has-error' : signinForm.username.$invalid}">
+		
+		<i class="icon ion-person padding"></i>
+		<span class="input-label">שם מלא</span>  
+		<input type="text"  
+		   name="username"
+		   ng-model="username"
+		   ng-minlength="5" 
+		   ng-maxlength="10" 
+		   required>
+		</label>
+
+
+		 <label for="emailAddress" class="item item-input"  
+		   ng-class="{ 'has-error' : signinForm.useremail.$invalid}">
+
+		 <i class="icon ion-email padding"></i>
+		<span class="input-label">אימייל</span>  
+		<input type="email"  
+		   name="useremail"
+		   ng-model="useremail"
+		   ng-minlength="5" 
+		   ng-maxlength="20"  
+		   required>
+		</label>
+
+			
+		<label class="item item-input"  
+		   ng-class="{ 'has-error' : signinForm.userwork.$invalid}">
+		
+		 <i class="icon ion-cube padding"></i>
+		<span class="input-label">מקצוע</span>  
+		<input type="text"  
+		   name="userwork"
+		   ng-model="userwork" 
+		   ng-minlength="3" 
+		   ng-maxlength="15"
+		   required>
+		</label>
+
+
+		<label class="item item-input"  
+		   ng-class="{ 'has-error' : signinForm.usercompany.$invalid}">
+		
+		 <i class="icon ion-cube padding"></i>
+		<span class="input-label">שם החברה</span>  
+		<input type="text"  
+		   name="usercompany"
+		   ng-model="usercompany" 
+		   ng-minlength="3" 
+		   ng-maxlength="20"
+		   required>
+		</label>
+
+		<label class="item item-input"  
+		   ng-class="{ 'has-error' : signinForm.userdescription.$invalid}">
+		 <i class="icon ion-document-text padding"></i>
+		<span class="input-label">תיאור</span>  
+		<textarea
+		   name="userdescription"
+		   ng-model="userdescription" 
+		   ng-minlength="30" 
+		   ng-maxlength="150"
+		   required>
+		</textarea>
+
+		</label>
+
+		<label class="item item-input"  
+		   ng-class="{ 'has-error' : signinForm.usertel.$invalid}">
+		 <i class="icon ion-iphone padding"></i>
+		<span class="input-label">טלפון</span>  
+		<input type="tel"  
+		   name="usertel"
+		   ng-model="usertel" 
+		   ng-minlength="8" 
+		   ng-maxlength="15" 
+		   ng-pattern="/^\d{0,9}(\d{1,9})?$/"
+		   required>
+		</label>
+
+		<label class="item item-input"  
+		   ng-class="{ 'has-error' : signinForm.useraddress.$invalid}">
+		 <i class="icon ion-map padding"></i>
+		<span class="input-label">עיר</span>  
+		<input type="text"  
+		   id="Autocomplete"
+		   ng-autocomplete="result2"
+		   details="details2"
+		   options="options2"
+		   name="useraddress"
+		   ng-model="useraddress" 
+		   ng-minlength="3" 
+		   ng-maxlength="25" 
+		   required>
+		</label>
+
+
+		<label class="item item-input">
+		<i class="icon ion-map padding"></i>
+		<span class="input-label">לוגו \ פרופיל</span>  
+		<button class="button button-icon icon ion-camera" ng-click="uploadlogo()"></button>
+		</label>
+
+
+		<div class="row images_row" ng-repeat="logo in logos" ng-if="$index % 4 === 0">
+              <div class="col col-25" ng-if="$index < logos.length">
+                  <img ng-src="data:image/jpeg;base64,{{logos[$index].logo}}" width="100%" alt="">          
+              </div>
+
+              <div class="col col-25" ng-if="$index < logos.length">
+                  <img ng-src="data:image/jpeg;base64,{{logos[$index + 1].logo}" width="100%" alt="">          
+              </div>
+
+              <div class="col col-25" ng-if="$index < logos.length">
+                  <img ng-src="data:image/jpeg;base64,{{logos[$index + 2].logo}" width="100%" alt="">          
+              </div>
+
+              <div class="col col-25" ng-if="$index < logos.length">
+                  <img ng-src="data:image/jpeg;base64,{{logos[$index +3].logo}" width="100%" alt="">          
+              </div>
+          </div>
+
+		<label class="item item-input">
+		<i class="icon ion-map padding"></i>
+		<span class="input-label">תמונות נוספות</span>  
+		<button class="button button-icon icon ion-camera" ng-click="uploadimages()"></button>
+		</label>
+
+		<div class="row images_row" ng-repeat="image in images" ng-if="$index % 4 === 0">
+          <div class="col col-25 " ng-if="$index < images.length">
+              <img ng-src="data:image/jpeg;base64,{{images[$index].image}}" width="100%" alt="">          
+          </div>
+
+          <div class="col col-25" ng-if="$index < images.length">
+              <img ng-src="data:image/jpeg;base64,{{images[$index + 1].image}}" width="100%" alt="">          
+          </div>
+
+          <div class="col col-25" ng-if="$index < images.length">
+              <img ng-src="data:image/jpeg;base64,{{images[$index + 2].image}}" width="100%" alt="">          
+          </div>
+
+          <div class="col col-25" ng-if="$index < images.length">
+              <img ng-src="data:image/jpeg;base64,{{images[$index +3].image}}" width="100%" alt="">          
+          </div>
+      </div>
+
+
+
+		<label class="item "  
+		   ng-class="{ 'has-error' : signinForm.uservolume.$invalid}">
+		
+		<span class="input-label">ותק בעבודה</span> 
+		<div class="item range">
+		  <i class="icon ion-android-walk "></i>
+		  <input type="range" name="uservolume" ng-model="data.volume">
+		  <i class="icon ion-man"></i>
+		  <p>שנה {{data.volume}}</p>
+		</div>
+		</label>
+
+
+		
+
+		<button class="button button-block button-positive">הוסף נותן שירות</button>
+		</div>
+
+	
+
+		</form>
+
+
+
+
+
+	  </ion-list>
+
+	  	
+	</ion-content>
+
+</ion-view>

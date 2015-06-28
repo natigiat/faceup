@@ -1,0 +1,78 @@
+<ion-view  hide-nav-bar="true" class="account_content">
+      <ion-content class="splash padding">
+           <!-- Tab 1 content -->
+		   	<div class="col-100 center" dir="rtl">
+		   		
+				<img class="small-image" src="img/logo.png">
+
+				<p>שעון נוכחות</p>
+
+				
+
+ 				<form name="loginForm" novalidate="" ng-submit="login(loginForm, name , password ,company_name , password_company)">
+				
+					<label class="item item-input"  
+					   ng-class="{ 'has-error' : signinForm.name.$invalid}">
+					
+					<i class="icon ion-person-stalker padding"></i>
+					<span class="input-label">שם משתמש</span>  
+					<input type="text"  
+					   name="name"
+					   ng-model="name"
+					   required>
+					</label>
+
+
+					<label class="item item-input"  
+					   ng-class="{ 'has-error' : signinForm.password.$invalid}">
+					
+					<i class="icon ion-ios-medical padding"></i>
+					<span class="input-label">סיסמא</span>  
+					<input type="password"  
+					   name="password"
+					   ng-model="password"
+					   ng-minlength="5" 
+					   ng-maxlength="10" 
+					   required>
+					</label>
+
+
+					<label class="item item-input"  
+					   ng-class="{ 'has-error' : signinForm.company_name.$invalid}">
+					
+					<i class="icon ion-person-stalker padding"></i>
+					<span class="input-label">שם של החברה</span>  
+					<input type="text"  
+					   name="company_name"
+					   ng-model="company_name"
+					   ng-minlength="5" 
+					   ng-maxlength="10" 
+					   required>
+					</label>
+
+					
+					<label class="item item-input"  
+					   ng-class="{ 'has-error' : signinForm.password_company.$invalid}">
+					
+					<i class="icon ion-person-stalker padding"></i>
+					<span class="input-label">סיסמת של חברה</span>  
+					<input type="password"  
+					   name="password_company"
+					   ng-model="password_company"
+					   ng-minlength="5" 
+					   ng-maxlength="10" 
+					   required>
+					</label>
+
+				
+					<input type="submit"  value="התחבר">
+
+
+
+				<p>אין לך חשבון <a href="#/register">הירשם</a></p>
+
+
+				{{error}}
+
+      </ion-content>
+</ion-view>

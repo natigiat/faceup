@@ -1,0 +1,60 @@
+<ion-view  hide-nav-bar="true" class="account_content">
+      <ion-content class="splash padding">
+           <!-- Tab 1 content -->
+		   	<div class="col-100 center" dir="rtl">
+		   		
+				<img class="small-image" src="img/logo.png">
+
+				<h2>עבודה עברית</h2>
+				<p>באמצעות סיסמא זאת יכולו <br>עובדיכם להיכנס לאפליקצייה</p>
+
+				<form name="registerForm" novalidate="" ng-submit="register(email , password , companyname)">
+
+				<label class="item item-input"  
+				   ng-class="{ 'has-error' : signinForm.companyname.$invalid}">
+				
+				<i class="icon ion-person-stalker padding"></i>
+				<span class="input-label">שם החברה</span>  
+				<input type="text"  
+				   name="companyname"
+				   ng-model="companyname"
+				   required>
+				</label>
+				
+
+				<label class="item item-input"  
+				   ng-class="{ 'has-error' : signinForm.email.$invalid}">
+				
+				<i class="icon ion-person padding"></i>
+				<span class="input-label">אימייל</span>  
+				<input type="text"  
+				   name="email"
+				   ng-model="email"
+				   required>
+				</label>
+
+
+				<label class="item item-input"  
+				   ng-class="{ 'has-error' : signinForm.password.$invalid}">
+				
+				<i class="icon ion-ios-medical padding"></i>
+				<span class="input-label">סיסמא</span>  
+				<input type="password"  
+				   name="password"
+				   ng-model="password"
+				   ng-minlength="5" 
+				   ng-maxlength="10" 
+				   required>
+				</label>
+
+			
+				<input type="submit"  value="רשום חברה">
+				
+
+				<p>יש לך חשבון <a href="#/log">הכנס</a></p>
+
+
+				{{error}}
+
+      </ion-content>
+</ion-view>
