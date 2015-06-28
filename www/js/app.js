@@ -77,7 +77,7 @@ newl.config(function ($stateProvider , $urlRouterProvider) {
     .state('log', {
       url: '/log',
       templateUrl: 'templates/account/log.html',
-      controller: 'loginController'
+      controller: 'accountController'
     })
 
     .state('register', {
@@ -98,8 +98,8 @@ newl.config(function ($stateProvider , $urlRouterProvider) {
       url: '/home',
       views: {
         'home-tab' : {  
-          templateUrl: 'templates/home.html'
-          //controller:  'loginController'
+          templateUrl: 'templates/home.html',
+          controller:  'homeController'
         }
       }
     })

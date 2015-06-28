@@ -2,7 +2,8 @@
 
 //---------------------------------------------account controller-----------------------------//
 newl.controller("accountController" , function($scope, $state, $firebaseAuth, $firebaseObject , $timeout,$ionicLoading){
-    
+
+
      var fbAuth = $firebaseAuth(fb);
      var obj = $firebaseObject(fb);
 
@@ -20,9 +21,91 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
      });
 
 
+     //**
+     //first check - if company in service
+     //secound check - if password of company currect
+     //third check - if user is sing in company
+     //fourd check - if password of user currect
+     //**
+     $scope.login =function (loginForm , name , password,company_name , password_company) {
+        $scope.error = '';
+        var form = loginForm;
+
+        var usersRef = new Firebase("https://firetubes.firebaseio.com/company/");
+        var ref = new Firebase("https://firetubes.firebaseio.com/company/"  + company_name);
+        var obj = $firebaseObject(ref);
+        var userobj = $firebaseObject(usersRef);
+
+        //first check - if company in service
+        if (form.company_name.$valid === false) { 
+            $scope.error = 'שם חברה אינו תקין ';
+        }else{
+            usersRef.once('value', function(snapshot) {
+                if (snapshot.hasChild(company_name)) {
+                      $scope.error = '';
+
+                      
+                      if (form.password_company.$valid === false) { 
+                          $scope.error = 'סיסמת חברה אינה תקינה';      
+                      }else {
+                          //secound check - if password of company currect
+                          obj.$bindTo($scope, "data").then(function() {
+                            var details = $scope.data;
+                            if (details.password == password_company) { 
+                              $scope.error = '';
+
+                             //third check - if user is sing in company
+                              ref.child("users").once('value', function(snapshot) {
+                                if (snapshot.hasChild(name)) {
+                                      
+                                      //fourd check - if password of user currect
+                                      ref.child("users").child(name).once('value', function(snapshot) {
+                                      var dataUser = snapshot.val();
+                                      var dataUserPass = dataUser.password;
+                                      if (dataUserPass === password ){
+                                          $scope.show($ionicLoading);
+                                          $scope.error = '';
+                                          console.log(dataUser.email + "מחובר");
+                                          $state.go("tabs.home");
+                                      }else {
+                                          $scope.error = 'הסיסמא שלך אינה נכונה';
+                                      }
+
+                                      });
+                                                
+
+                                }else{
+                                  $scope.error = 'פרטי החברה נכונים אך אין עובד עם שם כזה';
+                                }
+                              });
+
+                            }else{
+                              $scope.error = 'הסיסמא אינה נכונה';
+                            }
+                          });
+                      }
+
+                  }else{
+                      $scope.error = 'שם החברה אינו נמצא במערכת';
+                  }
+             });
+        }
+
+
+        // username
+        if (form.password.$valid === false) { 
+            $scope.error = 'סיסמת משתמש אינה תקינה';
+        }
+
+        // user rmail
+        if (form.name.$valid === false) { 
+            $scope.error = 'שם משתמש לא תקני';
+        }
+       };
 
      
 
+     //company register
      $scope.register =function (email , password ,companyname) {
       
       $scope.show($ionicLoading);
@@ -30,30 +113,30 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
       //set time of register
       var tim = moment().format('l');
 
+      var onComplete = function(error) {
+        if (error) {
+          console.log('Synchronization failed');
+        } else {
+          $state.go("tabs.home");
+        }
+      };
+
       var compRef = fb.child("company/" + companyname);
       compRef.set({
         password  : password , 
         email     : email ,
         date      :   tim 
-      })
+      },onComplete);
 
-      fbAuth.$createUser({email: email,password: password}).then(function(userData){
-        return fbAuth.$authWithPassword({
-          email: email,
-          password: password
-        });
-      }).then(function(authData){
-        $state.go("tabs.list");
-      }).catch(function(error){
-        console.error("ERROR:" + error);
-      });
+
      };
+
 
 
      $scope.registerUser =function (registerUserForm, name , email , password ,companyname , companyPass) {
       
       $scope.error = '';
-      // $scope.show($ionicLoading);
+      
 
       //set time of register
       var tim = moment().format('l');
@@ -68,8 +151,6 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
    
       // form validation
       
-      
-
       // company name
       if (form.companyname.$valid === false) { 
           $scope.error = 'שם חברה אינו תקין ';
@@ -87,6 +168,7 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
                           var details = $scope.data;
                           if (details.password == companyPass) { 
                             $scope.error = '';
+                            $scope.show($ionicLoading);
 
                             var onComplete = function(error) {
                               if (error) {
@@ -132,20 +214,8 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
           $scope.error = 'שם משתמש אינו תקין';
       }
 
-      // fbAuth.$createUser({email: email,password: password}).then(function(userData){
-      //   return fbAuth.$authWithPassword({
-      //     email: email,
-      //     password: password
-      //   });
-      // }).then(function(authData){
-      //   $state.go("tabs.list");
-      // }).catch(function(error){
-      //   console.error("ERROR:" + error);
-      // });
      };
 
-
-  
 
     //----------------ionic loader --------------------------------
     $scope.show = function() {
@@ -157,7 +227,6 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
         });
     };
 
-    
     $scope.hide = function(){
         $ionicLoading.hide();
     };        
