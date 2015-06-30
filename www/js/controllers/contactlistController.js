@@ -9,8 +9,8 @@ newl.controller("contactlistController" , function($scope, $state, $firebaseAuth
         $scope.contacts = result;
       },function(error){
           alert(error);
-      })
+      }):
      
-    };
+    }
 
 });

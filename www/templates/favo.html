@@ -30,26 +30,15 @@
           
           </ion-list>
 
-          <div class="padding">
+    
               <button class="button" ng-click="getContactList()">Get My Contacts</button>
-              <div class="list" ng-show="phoneContacts">
-                <div class="card" ng-repeat="contact in contacts">
-                  <div class="item item-divider">
-                    {{ contact.name.formatted }}
-                  </div>
-                  <div class="item item-text-wrap">
-                    <p><strong>Phone(s)</strong></p>
-                    <div ng-repeat="number in contact.phoneNumbers">
-                      <p>{{ number.value }}</p>
-                    </div>
-                    <p><strong>Email(s)</strong></p>
-                    <div ng-repeat="email in contact.emails">
-                      <p>{{ email.value }}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+                       
+                  <ion-list>
+                    <ion-item ng-repeat="contact in contacts">
+                        {{ contact.displayName }}
+                    </ion-item>
+                  </ion-list>
+
 
         </ion-content>
   </ion-view>
