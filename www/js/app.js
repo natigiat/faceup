@@ -26,7 +26,7 @@ newl.run(function($ionicPlatform, $firebaseAuth, $rootScope , $state, $window) {
           $state.go("tabs.list");
         } else {
           console.log("Logged out");
-          $state.go("account");
+          $state.go("tabs.list");
         }
      });
 
@@ -100,7 +100,7 @@ newl.config(function ($stateProvider , $urlRouterProvider , $translateProvider) 
     .state('registerUser', {
       url: '/registerUser',
       templateUrl: 'templates/account/registerUser.html',
-      controller: 'accountController'
+      controller: 'contactController'
     })
 
 
@@ -110,7 +110,7 @@ newl.config(function ($stateProvider , $urlRouterProvider , $translateProvider) 
       views: {
         'home-tab' : {  
           templateUrl: 'templates/home.html',
-          controller:  'homeController'
+          controller:  'settingsController'
         }
       }
     })
@@ -142,7 +142,7 @@ newl.config(function ($stateProvider , $urlRouterProvider , $translateProvider) 
       views: {
         'favo-tab' : {  
           templateUrl: 'templates/favo.html',
-          controller:  'DataCtrl'
+          controller:  'contactlistController'
         }
       }
     })
@@ -164,7 +164,7 @@ newl.config(function ($stateProvider , $urlRouterProvider , $translateProvider) 
       views: {
         'add-tab' : {  
           templateUrl: 'templates/add.html',
-          controller:  'addController'
+          controller:  'chatController'
         }
       }
     });
