@@ -13,7 +13,7 @@ newl.controller("accountController" , function($scope, $state, $firebaseAuth, $f
     fbAuth.$onAuth(function(authData) {
         if (authData) {
           console.log("Logged in as:", authData.uid);
-          //$state.go("tabs.list");
+          $state.go("tabs.list");
         } else {
           console.log("Logged out");
           $state.go("account");

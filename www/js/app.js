@@ -3,10 +3,10 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var newl = angular.module('starter', ['ionic' , 'firebase' ,'ngAutocomplete' , 'ngCordova' ]);
+var newl = angular.module('starter', ['ionic' , 'firebase' ,'ngAutocomplete' , 'ngCordova' , 'pascalprecht.translate' ]);
 var fb = new Firebase("https://firetubes.firebaseio.com/");
 
-newl.run(function($ionicPlatform, $rootScope , $state, $window) {
+newl.run(function($ionicPlatform, $firebaseAuth, $rootScope , $state, $window) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -18,14 +18,25 @@ newl.run(function($ionicPlatform, $rootScope , $state, $window) {
     }
   });
 
-
-  
+   var fbAuth = $firebaseAuth(fb);
+       //check if user authinticate or not
+    fbAuth.$onAuth(function(authData) {
+        if (authData) {
+          console.log("Logged in as:", authData.uid);
+          $state.go("tabs.list");
+        } else {
+          console.log("Logged out");
+          $state.go("account");
+        }
+     });
 
 
 })
 
-newl.config(function ($stateProvider , $urlRouterProvider) {
+newl.config(function ($stateProvider , $urlRouterProvider , $translateProvider) {
   
+
+
 
   var resolve = {
     auth: function($q, $timeout, Auth, User) {
@@ -94,8 +105,8 @@ newl.config(function ($stateProvider , $urlRouterProvider) {
 
 
 
-    .state('tabs.home/:com/:name' , { 
-      url: '/home/:com/:name',
+    .state('tabs.home' , { 
+      url: '/home',
       views: {
         'home-tab' : {  
           templateUrl: 'templates/home.html',

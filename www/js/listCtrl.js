@@ -21,6 +21,10 @@ newl.controller("DataCtrl", function ($scope, $http, $state , $firebase , $ionic
       });
 
       
+       $scope.write = function() {
+             alert(22);
+        
+      };      
 
       $scope.doRefresh = function() {
              var obj = Allar;

@@ -1,19 +1,35 @@
 <ion-view view-title="רשימת נותני שירות" dir="rtl">
-        <div class="bar bar-subheader item-input-inset bar-light">
+        
+      <ion-nav-buttons side="primary">
+        <button class="button button-icon ion-minus-circled" ng-click="write()"></button>
+      </ion-nav-buttons>
 
+      <ion-nav-buttons side="secondary">
+          <button class="button button-icon ion-ios-compose-outline" ng-click="write()"></button>
+      </ion-nav-buttons> 
+       
+
+        <div class="bar bar-subheader item-input-inset bar-light">
                   <label class="item-input-wrapper">
                     <i class="icon ion-search placeholder-icon"></i>
                     <input type="search" ng-model="query" placeholder="Search">
-                  </label>
-   
-          </label>
+                  </label>          
         </div>
+
+
 
         <ion-content class="has-subheader">
         <ion-refresher
             pulling-text="Pull to refresh..."
             on-refresh="doRefresh()">
          </ion-refresher>
+
+
+         <div class="row">
+          <div class="col col-50 click-text">קבוצה חדשה</a></div>
+          <div class="col col-50 text-left click-text">טקסט</div>
+        </div>
+
 
 
           <ion-list show-delete="data.showDelete" show-reorder="data.showReorder">

@@ -3,7 +3,16 @@
 	background: rgb(226, 226, 226);
 }
 
-.home_content {
+.text-left{
+	text-align: left;
+}
+
+.click-text {
+	color: red;
+	text-decoration: underline;
+}
+
+/*.home_content {
 	background: url(http://i.istockimg.com/file_thumbview_approve/43586122/6/stock-illustration-43586122-israel-map-blue.jpg) no-repeat center center fixed;
 	background-size: cover;
 	-webkit-background-size: cover;
@@ -19,7 +28,7 @@
 	-moz-background-size: cover;
 	-o-background-size: cover; 
 }
-
+*/
 .center {
 	text-align: center;
 	color: #fff;
