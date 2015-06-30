@@ -170,7 +170,7 @@ newl.config(function ($stateProvider , $urlRouterProvider , $translateProvider) 
     });
 
 
-    $urlRouterProvider.otherwise('/account');
+    $urlRouterProvider.otherwise('tab.list');
    
 })
 

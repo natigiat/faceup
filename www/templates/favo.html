@@ -31,9 +31,9 @@
           </ion-list>
 
           <div class="padding">
-              <button class="button" ng-click="getContacts()">Get My Contacts</button>
+              <button class="button" ng-click="getContactList()">Get My Contacts</button>
               <div class="list" ng-show="phoneContacts">
-                <div class="card" ng-repeat="contact in phoneContacts">
+                <div class="card" ng-repeat="contact in contacts">
                   <div class="item item-divider">
                     {{ contact.name.formatted }}
                   </div>
